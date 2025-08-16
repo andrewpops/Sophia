@@ -182,6 +182,7 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
     const response = await contentfulClient.getEntries({
       content_type: 'blogPost',
       'fields.category.fields.slug': categorySlug,
+      'fields.category.sys.contentType.sys.id': 'category',
       include: 2,
       order: ['-fields.publishedDate'],
     })
@@ -239,6 +240,7 @@ export async function getRelatedPosts(currentSlug: string, categorySlug: string,
     const response = await contentfulClient.getEntries({
       content_type: 'blogPost',
       'fields.category.fields.slug': categorySlug,
+      'fields.category.sys.contentType.sys.id': 'category',
       include: 2,
       order: ['-fields.publishedDate'],
       limit: limit + 5, // Get extra in case we need to filter out current post
