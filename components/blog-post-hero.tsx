@@ -1,15 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock, User } from "lucide-react"
-
-interface BlogPost {
-  title: string
-  excerpt: string
-  category: string
-  date: string
-  readTime: string
-  image: string
-  author: string
-}
+import { BlogPost } from "@/lib/contentful"
 
 interface BlogPostHeroProps {
   post: BlogPost
@@ -22,10 +13,18 @@ export function BlogPostHero({ post }: BlogPostHeroProps) {
         <div className="space-y-8">
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground justify-center">
-            <Badge className="bg-primary text-primary-foreground">{post.category}</Badge>
+            <Badge 
+              className="text-white border-0" 
+              style={{ 
+                backgroundColor: post.category.color,
+                color: 'white'
+              }}
+            >
+              {post.category.name}
+            </Badge>
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              {new Date(post.date).toLocaleDateString("en-US", {
+              {new Date(post.publishedDate).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
@@ -41,17 +40,23 @@ export function BlogPostHero({ post }: BlogPostHeroProps) {
             </div>
           </div>
 
-          {/* Title and Excerpt */}
-          <div className="text-center space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground leading-tight">
-              {post.title}
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">{post.excerpt}</p>
-          </div>
+          {/* Title */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground text-center leading-tight">
+            {post.title}
+          </h1>
+
+          {/* Excerpt */}
+          <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
+            {post.excerpt}
+          </p>
 
           {/* Featured Image */}
-          <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-muted">
-            <img src={post.image || "/placeholder.svg"} alt={post.title} className="w-full h-full object-cover" />
+          <div className="aspect-[16/9] overflow-hidden rounded-2xl shadow-2xl">
+            <img
+              src={post.featuredImage.url}
+              alt={post.featuredImage.alt}
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>

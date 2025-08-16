@@ -1,29 +1,14 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { getNavigationPosts } from "@/lib/contentful"
 
 interface BlogPostNavigationProps {
   currentSlug: string
 }
 
-export function BlogPostNavigation({ currentSlug }: BlogPostNavigationProps) {
-  // In a real app, you'd fetch the previous and next posts from your data source
-  const navigation = {
-    previous:
-      currentSlug === "breathwork-beginners-guide"
-        ? null
-        : {
-            title: "Understanding Your Nervous System",
-            slug: "nervous-system-regulation",
-          },
-    next:
-      currentSlug === "fascial-stretch-benefits"
-        ? null
-        : {
-            title: "5 Surprising Benefits of Fascial Stretch Therapy",
-            slug: "fascial-stretch-benefits",
-          },
-  }
+export async function BlogPostNavigation({ currentSlug }: BlogPostNavigationProps) {
+  const navigation = await getNavigationPosts(currentSlug)
 
   return (
     <section className="py-12 bg-muted/30 border-y border-border">

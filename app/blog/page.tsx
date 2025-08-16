@@ -1,18 +1,24 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { BlogHero } from "@/components/blog-hero"
-import { BlogGrid } from "@/components/blog-grid"
-import { BlogCategories } from "@/components/blog-categories"
+import { BlogContent } from "@/components/blog-content"
 import { BlogNewsletter } from "@/components/blog-newsletter"
+import { getAllBlogPosts, getAllCategories } from "@/lib/contentful"
 
-export default function BlogPage() {
+export const revalidate = 3600 // Revalidate every hour
+
+export default async function BlogPage() {
+  const [posts, categories] = await Promise.all([
+    getAllBlogPosts(),
+    getAllCategories()
+  ])
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
         <BlogHero />
-        <BlogCategories />
-        <BlogGrid />
+        <BlogContent initialPosts={posts} categories={categories} />
         <BlogNewsletter />
       </main>
       <Footer />

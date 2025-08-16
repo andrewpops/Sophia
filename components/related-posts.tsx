@@ -3,44 +3,19 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Clock } from "lucide-react"
+import { getRelatedPosts } from "@/lib/contentful"
 
 interface RelatedPostsProps {
   currentSlug: string
   category: string
 }
 
-const allPosts = [
-  {
-    id: "morning-wellness-routine",
-    title: "Creating a Morning Wellness Routine That Actually Works",
-    excerpt: "Simple, science-backed practices to start your day with energy, clarity, and intention.",
-    category: "Wellness Tips",
-    readTime: "5 min read",
-    image: "/placeholder.svg?height=300&width=400",
-  },
-  {
-    id: "stress-relief-techniques",
-    title: "5 Quick Stress Relief Techniques for Busy Professionals",
-    excerpt: "Evidence-based stress management techniques that take 5 minutes or less.",
-    category: "Wellness Tips",
-    readTime: "4 min read",
-    image: "/placeholder.svg?height=300&width=400",
-  },
-  {
-    id: "nervous-system-regulation",
-    title: "Understanding Your Nervous System: A Key to Better Health",
-    excerpt: "Learn how your nervous system affects everything from digestion to sleep.",
-    category: "Mind-Body",
-    readTime: "10 min read",
-    image: "/placeholder.svg?height=300&width=400",
-  },
-]
+export async function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
+  const relatedPosts = await getRelatedPosts(currentSlug, category, 3)
 
-export function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
-  // Filter out current post and get related posts
-  const relatedPosts = allPosts.filter((post) => post.id !== currentSlug).slice(0, 3)
-
-  if (relatedPosts.length === 0) return null
+  if (relatedPosts.length === 0) {
+    return null
+  }
 
   return (
     <section className="py-20 bg-background">
@@ -57,14 +32,22 @@ export function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 border-border">
               <div className="aspect-[4/3] overflow-hidden rounded-t-lg">
                 <img
-                  src={post.image || "/placeholder.svg?height=300&width=400"}
-                  alt={post.title}
+                  src={post.featuredImage.url}
+                  alt={post.featuredImage.alt}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <CardHeader className="pb-4">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                  <Badge variant="outline">{post.category}</Badge>
+                  <Badge 
+                    variant="outline" 
+                    style={{ 
+                      backgroundColor: post.category.color + '20', 
+                      color: post.category.color 
+                    }}
+                  >
+                    {post.category.name}
+                  </Badge>
                   <div className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {post.readTime}
@@ -75,14 +58,16 @@ export function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <CardDescription className="text-muted-foreground leading-relaxed">{post.excerpt}</CardDescription>
+                <CardDescription className="text-muted-foreground leading-relaxed">
+                  {post.excerpt}
+                </CardDescription>
                 <Button
                   asChild
                   variant="outline"
                   size="sm"
                   className="bg-transparent group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                 >
-                  <Link href={`/blog/${post.id}`}>Read Article</Link>
+                  <Link href={`/blog/${post.slug}`}>Read Article</Link>
                 </Button>
               </CardContent>
             </Card>
