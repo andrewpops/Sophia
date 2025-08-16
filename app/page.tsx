@@ -7,6 +7,7 @@ import { InstagramFeed } from "@/components/instagram-feed"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 import { Footer } from "@/components/footer"
 
+// Trigger redeployment for Contentful environment variables
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
@@ -23,3 +24,5 @@ export default function HomePage() {
     </div>
   )
 }
+
+
