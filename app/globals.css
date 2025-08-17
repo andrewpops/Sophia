@@ -1,43 +1,56 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@300;400;500;600&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens for wellness theme with calming earthy palette */
-  --background: oklch(1 0 0); /* Pure white */
-  --foreground: oklch(0.35 0 0); /* Charcoal grey #4b5563 */
-  --card: oklch(0.98 0 0); /* Soft light grey #f9fafb */
-  --card-foreground: oklch(0.35 0 0); /* Charcoal grey */
+  /* Luxury spa color palette inspired by sandalwood, rosehip, and eucalyptus */
+  --background: oklch(0.9800 0.0100 85.0000); /* Cream white */
+  --foreground: oklch(0.4500 0.0600 35.0000); /* Deep brown */
+  --card: oklch(1 0 0); /* Pure white for cards */
+  --card-foreground: oklch(0.4500 0.0600 35.0000); /* Deep brown */
   --popover: oklch(1 0 0); /* Pure white */
-  --popover-foreground: oklch(0.35 0 0); /* Charcoal grey */
-  --primary: oklch(0.55 0.15 210); /* Cyan-600 #0891b2 for tranquility */
+  --popover-foreground: oklch(0.4500 0.0600 35.0000); /* Deep brown */
+  --primary: oklch(0.5500 0.0800 120.0000); /* Sage green */
   --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.65 0.2 45); /* Vibrant orange #f97316 for CTAs */
-  --secondary-foreground: oklch(1 0 0); /* White text on secondary */
-  --muted: oklch(0.98 0 0); /* Soft light grey */
-  --muted-foreground: oklch(0.35 0 0); /* Charcoal grey */
-  --accent: oklch(0.65 0.2 45); /* Vibrant orange for highlights */
-  --accent-foreground: oklch(1 0 0); /* White text on accent */
+  --secondary: oklch(0.8500 0.0400 65.0000); /* Warm beige */
+  --secondary-foreground: oklch(0.4500 0.0600 35.0000); /* Deep brown text */
+  --muted: oklch(0.9600 0.0200 80.0000); /* Very light cream */
+  --muted-foreground: oklch(0.6500 0.0600 45.0000); /* Stone gray */
+  --accent: oklch(0.7500 0.1200 85.0000); /* Gold accent */
+  --accent-foreground: oklch(0.4500 0.0600 35.0000); /* Deep brown text */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.92 0 0); /* Light border #e5e7eb */
+  --border: oklch(0.9200 0.0300 75.0000); /* Light beige border */
   --input: oklch(1 0 0); /* White input background */
-  --ring: oklch(0.55 0.15 210 / 0.5); /* Primary color with opacity for focus */
-  --chart-1: oklch(0.55 0.15 210); /* Primary cyan */
-  --chart-2: oklch(0.65 0.2 45); /* Secondary orange */
-  --chart-3: oklch(0.35 0 0); /* Charcoal grey */
-  --chart-4: oklch(0.98 0 0); /* Soft light grey */
-  --chart-5: oklch(1 0 0); /* Pure white */
-  --radius: 0.5rem; /* Slightly smaller radius for modern look */
+  --ring: oklch(0.5500 0.0800 120.0000 / 0.3); /* Sage green focus ring */
+  --chart-1: oklch(0.5500 0.0800 120.0000); /* Sage green */
+  --chart-2: oklch(0.8500 0.0400 65.0000); /* Warm beige */
+  --chart-3: oklch(0.7500 0.1200 85.0000); /* Gold accent */
+  --chart-4: oklch(0.6500 0.0600 45.0000); /* Stone gray */
+  --chart-5: oklch(0.4500 0.0600 35.0000); /* Deep brown */
+  --radius: 0.75rem; /* Slightly larger radius for luxury feel */
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.35 0 0);
-  --sidebar-primary: oklch(0.55 0.15 210);
+  --sidebar-foreground: oklch(0.4500 0.0600 35.0000);
+  --sidebar-primary: oklch(0.5500 0.0800 120.0000);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.65 0.2 45);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.92 0 0);
-  --sidebar-ring: oklch(0.55 0.15 210 / 0.5);
+  --sidebar-accent: oklch(0.7500 0.1200 85.0000);
+  --sidebar-accent-foreground: oklch(0.4500 0.0600 35.0000);
+  --sidebar-border: oklch(0.9200 0.0300 75.0000);
+  --sidebar-ring: oklch(0.5500 0.0800 120.0000 / 0.3);
+  
+  /* Typography system */
+  --font-display: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-serif: 'Source Serif Pro', serif;
+  
+  /* Luxury shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(45, 35, 25, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(45, 35, 25, 0.1), 0 2px 4px -1px rgba(45, 35, 25, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(45, 35, 25, 0.1), 0 4px 6px -2px rgba(45, 35, 25, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(45, 35, 25, 0.1), 0 10px 10px -5px rgba(45, 35, 25, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(45, 35, 25, 0.25);
 }
 
 .dark {
@@ -123,16 +136,114 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-family: var(--font-serif);
   }
 
-  /* Added typography styles for wellness aesthetic */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-serif font-bold;
+  /* Luxury typography system */
+  h1 {
+    font-family: var(--font-display);
+    @apply font-semibold;
+  }
+  
+  h2, h3 {
+    font-family: var(--font-display);
+    @apply font-medium;
+  }
+  
+  h4, h5, h6 {
+    font-family: var(--font-sans);
+    @apply font-semibold;
+  }
+  
+  /* Button and interactive typography */
+  button, .btn {
+    font-family: var(--font-sans);
+  }
+  
+  /* Navigation typography */
+  nav {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  /* Breathing animations for luxury feel */
+  @keyframes breathe {
+    0%, 100% { 
+      transform: scale(1); 
+      opacity: 0.8; 
+    }
+    50% { 
+      transform: scale(1.02); 
+      opacity: 1; 
+    }
+  }
+  
+  @keyframes goldShimmer {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  @keyframes floatUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .breathing {
+    animation: breathe 4s ease-in-out infinite;
+  }
+  
+  .gold-shimmer {
+    background: linear-gradient(90deg, var(--foreground) 25%, var(--accent) 50%, var(--foreground) 75%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShimmer 3s linear infinite;
+  }
+  
+  .float-up {
+    animation: floatUp 0.8s ease-out forwards;
+  }
+  
+  /* Luxury card styling */
+  .luxury-card {
+    @apply bg-card rounded-xl shadow-lg border border-border/20;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .luxury-card:hover {
+    @apply shadow-xl;
+    transform: translateY(-4px);
+  }
+  
+  /* Premium button styling */
+  .btn-luxury {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .btn-luxury:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .btn-luxury:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
   }
 }
